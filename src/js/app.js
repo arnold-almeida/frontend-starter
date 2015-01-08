@@ -58,7 +58,7 @@ var App = React.createClass({
 
     return (
       <div>
-        JS Starter v9
+        JS Starter v10
       </div>
     );
   }
