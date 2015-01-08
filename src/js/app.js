@@ -1,11 +1,15 @@
 /** @jsx React.DOM */
 
+// requirements
 var _                       = require('underscore');
 var React                   = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var Touchstone              = require('touchstonejs');
+var classnames              = require('classnames');
 
-// var config = require('./config')
-
+// config
+var config = require('./config/config');
+var routes = require('./config/routes');
 var views = {
 
   // app
@@ -15,8 +19,12 @@ var views = {
   
 };
 
+// bootstrap
 var App = React.createClass({
-  mixins: [],
+
+  mixins: [
+    Touchstone.createApp(views)
+  ],
 
   getInitialState: function() {
 
@@ -49,27 +57,8 @@ var App = React.createClass({
     });
 
     return (
-      <div className={appWrapperClassName}>
-        <div className="device-silhouette">
-          <div className="view-wrapper">
-            <ReactCSSTransitionGroup transitionName={this.state.viewTransition.name} transitionEnter={this.state.viewTransition.in} transitionLeave={this.state.viewTransition.out}>
-              {this.getCurrentView()}
-            </ReactCSSTransitionGroup>
-          </div>
-        </div>
-        <div className="demo-wrapper">
-          <img src="img/logo-mark.svg" alt="TouchstoneJS" className="demo-brand" width="80" height="80" />
-          <h1>
-            TouchstoneJS 
-            <small> demo</small>
-          </h1>
-          <p>React.js powered UI framework for developing beautiful hybrid mobile apps.</p>
-          <ul className="demo-links">
-            <li><a href="https://twitter.com/touchstonejs" target="_blank" className="ion-social-twitter">Twitter</a></li>
-            <li><a href="https://github.com/jedwatson/touchstonejs" target="_blank" className="ion-social-github">Github</a></li>
-            <li><a href="http://touchstonejs.io" target="_blank" className="ion-map">Roadmap</a></li>
-          </ul>
-        </div>
+      <div>
+        JS Starter v9
       </div>
     );
   }

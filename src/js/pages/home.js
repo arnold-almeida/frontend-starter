@@ -1,12 +1,12 @@
 var React = require('react');
 
-var MyView = React.createClass({
+var Homepage = React.createClass({
   render: function(){
     return (
       <div>
-        Example
+        Homepage
       </div>
     );
   }
 });
-module.exports = MyView;
+module.exports = Homepage;
