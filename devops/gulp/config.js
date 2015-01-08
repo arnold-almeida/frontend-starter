@@ -22,15 +22,13 @@ module.exports = {
     src: src + "/assets/img/**",
     dest: dest + "/images"
   },
-  markup: {
-    src: src + "/**",
-    dest: dest
+  scripts: {
+    src: src + '/js',
+    dest: dest + '/js',
   },
-  browserify: {
-    // A separate bundle will be generated for each
-    // bundle config in the list below
-    bundleConfigs: []
-    
+  markup: {
+    src: src + '/',
+    dest: dest + "/"
   },
   production: {
     cssSrc: dest + '/*.css',
