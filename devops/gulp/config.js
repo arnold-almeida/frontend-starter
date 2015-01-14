@@ -5,12 +5,12 @@ module.exports = {
   browserSync: {
     server: {
       // Serve up our build folder
-      baseDir: dest
+      baseDir: dest + '/'
     }
   },
   sass: {
     src: src + "/assets/scss/*.{sass,scss}",
-    dest: dest,
+    dest: dest + '/css',
     settings: {
       // Required if you want to use SASS syntax
       // See https://github.com/dlmanning/gulp-sass/issues/81
@@ -27,8 +27,8 @@ module.exports = {
     dest: dest + '/js',
   },
   markup: {
-    src: src + '/',
-    dest: dest + "/"
+    src: src,
+    dest: dest
   },
   production: {
     cssSrc: dest + '/*.css',

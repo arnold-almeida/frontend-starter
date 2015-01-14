@@ -13,6 +13,8 @@ var merge        = require('merge-stream');
 var chalk        = require('chalk');
 var uglify       = require('gulp-uglify');
 var streamify    = require('gulp-streamify');
+var browserSync  = require('browser-sync');
+var filter       = require('gulp-filter');
 
 function doBundle(target, name, dest) {
   return target.bundle()
@@ -21,8 +23,10 @@ function doBundle(target, name, dest) {
   })
   .pipe(source(name))
   .pipe(streamify(uglify()))
-  .pipe(gulp.dest(dest));
-
+  .pipe(gulp.dest(dest))
+  .pipe(filter('**/*.js'))     // Filtering stream to only js files
+  .pipe(browserSync.reload({stream:true}));
+  
 }
 
 function watchBundle(target, name, dest) {

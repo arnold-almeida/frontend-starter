@@ -1,3 +1,3 @@
 var gulp = require('gulp');
 
-gulp.task('default', ['sass', 'images', 'markup', 'scripts', 'watch']);
+gulp.task('default', ['bs-start', 'scripts' ,'watch']);

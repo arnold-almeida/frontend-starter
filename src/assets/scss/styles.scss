@@ -1,0 +1,27 @@
+@import "vendor/reset";
+
+::selection {
+  background-color: #ffff00;
+  color: #000;
+  opacity: 0.8;
+}
+
+
+html, body{
+  font-family: 'FuturaStd-Book',Sans-Serif;
+  letter-spacing: 1px;
+  background-color: #10069f;
+  background-color: #101820; /* */
+  color: #FFF;
+}
+
+a, a:hover {
+  display: block;
+  text-decoration: none;
+  color: #FFF;
+
+}
+
+a:hover {
+  text-decoration: line-through;
+}

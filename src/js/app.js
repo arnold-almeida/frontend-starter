@@ -1,71 +1,97 @@
 /** @jsx React.DOM */
 
 // requirements
-var _                       = require('underscore');
-var React                   = require('react/addons');
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
-var Touchstone              = require('touchstonejs');
-var classnames              = require('classnames');
+var _             = require('underscore');
+var classnames    = require('classnames');
+var React         = require('react/addons');
+var Router        = require('react-router');
+var Route         = Router.Route;
+var NotFoundRoute = Router.NotFoundRoute;
+var DefaultRoute  = Router.DefaultRoute;
+var Link          = Router.Link;
+var RouteHandler  = Router.RouteHandler;
+
+// tmp
+var Touchstone = require('touchstonejs');
 
 // config
 var config = require('./config/config');
-var routes = require('./config/routes');
+
 var views = {
 
-  // app
-  'home': require('./pages/home'),
-  
-  // transitions
-  
+  // default
+  'default' : require('./pages/home'),
+
+  // pages
+  'about': require('./component/about'),
+
 };
 
 // bootstrap
 var App = React.createClass({
 
   mixins: [
-    Touchstone.createApp(views)
+    //Router.State,
+    Touchstone.createApp(views),
   ],
 
-  getInitialState: function() {
+  render: function () {
 
-    var initialState = {
-      currentView: 'home',
-      online: true,
-      centre: undefined,
-      gate: undefined,
-      isNativeApp: false
-    }
+  var name = this.getRoutes().reverse()[0].name;
 
-    return initialState
-  },
+  console.log('Navigated to : ' + name);
 
-  getViewProps: function() {
-    return {
-      online: this.state.online
-    };
-  },
-  
-  gotoDefaultView: function() {
-    this.showView('home', 'fade');
-  },
+  return (
+      <div>
+        <Toolbar/>
+        <header>
+          <ul>
+            <li><Link to="about">Page 1</Link></li>
+            <li><Link to="page2">Page 2</Link></li>
+          </ul>
+          Logged in as Arnold
+        </header>
 
-  render: function() {
+        <RouteHandler/>
+      </div>
+    );
+  }
 
-    var appWrapperClassName = classnames({
-      'app-wrapper': true,
-      'is-native-app': this.state.isNativeApp
-    });
+});
 
+
+var Toolbar = React.createClass({
+  render: function () {
     return (
       <div>
-        JS Starter v10
+        <h1>Tooling</h1>
       </div>
     );
   }
 });
 
-function startApp() {
-  React.render(<App />, document.getElementById('app'));
-}
+var AboutPage = require('./pages/about');
 
-startApp();
+var Page2 = React.createClass({
+  render: function () {
+    return (
+      <div className="Image">
+        <h1>Page 2</h1>
+        <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    );
+  }
+});
+
+var routes = (
+  <Route name="app" path="/" handler={App}>
+    <Route name="about" handler={AboutPage} />
+    <Route name="page2" handler={Page2} />
+  </Route>
+);
+
+Router.run(routes, function (Handler) {
+  React.render(<Handler/>, document.body);
+});
+
+

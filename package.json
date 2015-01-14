@@ -31,12 +31,14 @@
     "reactify": "~0.17.1",
     "chalk": "~0.5.1",
     "merge-stream": "~0.1.6",
-    "gulp-streamify": "0.0.5"
+    "gulp-streamify": "0.0.5",
+    "gulp-filter": "~2.0.0"
   },
   "dependencies": {
     "underscore": "~1.7.0",
     "react": "~0.12.2",
     "touchstonejs": "~0.1.2",
-    "classnames": "~1.0.0"
+    "classnames": "~1.0.0",
+    "react-router": "~0.11.6"
   }
 }
