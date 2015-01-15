@@ -27,7 +27,7 @@ module.exports = {
     dest: dest + '/js',
   },
   markup: {
-    src: src,
+    src: src + '/*.html',
     dest: dest
   },
   production: {
