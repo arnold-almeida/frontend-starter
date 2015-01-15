@@ -20,10 +20,10 @@ var config = require('./config/config');
 var views = {
 
   // default
-  'default' : require('./pages/home'),
+  // 'default' : require('./component/home'),
 
   // pages
-  'about': require('./component/about'),
+  // 'about': require('./component/about'),
 
 };
 
@@ -35,13 +35,35 @@ var App = React.createClass({
     Touchstone.createApp(views),
   ],
 
+  // validate the prop types
+  // http://facebook.github.io/react/docs/reusable-components.html#prop-validation
+  propTypes: {
+    data: React.PropTypes.shape({
+      name: React.PropTypes.sting
+    })
+  },
+
+
+  getDefaultProps: function() {
+    return {
+      endpoint : '/api/users/login',
+      // or 
+      // data: ApiRequest.get(this.endpoint, params)
+      // or
+      test: this.endpoint,
+      // static, mocked
+      data: {
+        name : 'Scuba Steve'
+      }
+    };
+  },
+
   render: function () {
 
-  var name = this.getRoutes().reverse()[0].name;
+    //var name = this.getRoutes().reverse()[0].name;
+    //console.log('Navigated to : ' + name);
 
-  console.log('Navigated to : ' + name);
-
-  return (
+    return (
       <div>
         <Toolbar/>
         <header>
@@ -49,14 +71,13 @@ var App = React.createClass({
             <li><Link to="about">Page 1</Link></li>
             <li><Link to="page2">Page 2</Link></li>
           </ul>
-          Logged in as Arnold
+          {this.props.data.name}
         </header>
 
         <RouteHandler/>
       </div>
     );
   }
-
 });
 
 
@@ -70,7 +91,7 @@ var Toolbar = React.createClass({
   }
 });
 
-var AboutPage = require('./pages/about');
+var AboutPage = require('./component/about');
 
 var Page2 = React.createClass({
   render: function () {
