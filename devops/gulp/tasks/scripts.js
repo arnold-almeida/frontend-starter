@@ -1,6 +1,5 @@
 var gulp         = require('gulp');
 var gutil        = require('gulp-util');
-var debug        = require('gulp-debug');
 var streamify    = require('gulp-streamify')
 var config       = require('../config');
 var browserify   = require('browserify');
